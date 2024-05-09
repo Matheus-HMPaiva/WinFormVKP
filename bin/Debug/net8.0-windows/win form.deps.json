@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "win form/1.0.0": {
+        "dependencies": {
+          "CuCustomWndAPIWrp": "0.1.0.6"
+        },
+        "runtime": {
+          "win form.dll": {}
+        }
+      },
+      "CuCustomWndAPIWrp/0.1.0.6": {
+        "runtime": {
+          "CuCustomWndAPIWrp.dll": {
+            "assemblyVersion": "0.1.0.6",
+            "fileVersion": "0.1.0.6"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "win form/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CuCustomWndAPIWrp/0.1.0.6": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
