@@ -218,7 +218,7 @@ namespace win_form
             using (Image image = Image.FromFile(imagePath))
             {
                 // Escurece a imagem
-                AdjustContrast(image, -30); // Ajuste o valor de contraste conforme necessário
+                //AdjustContrast(image, 1); // Ajuste o valor de contraste conforme necessário
 
                 // Define a área de impressão dentro da página (com margens)
                 Rectangle printArea = new Rectangle(
@@ -256,26 +256,31 @@ namespace win_form
         }
 
         // Função para ajustar o contraste da imagem
-        private void AdjustContrast(Image image, float value)
+        private void AdjustImageProperties(Image image, float contrastValue, float brightnessValue, float saturationValue)
         {
             using (Graphics g = Graphics.FromImage(image))
             {
-                // Cria um ajuste de cor para alterar o contraste
-                ImageAttributes attributes = new ImageAttributes();
-                float[][] matrix = {
-                    new float[] {value, 0, 0, 0, 0},
-                    new float[] {0, value, 0, 0, 0},
-                    new float[] {0, 0, value, 0, 0},
-                    new float[] {0, 0, 0, 1, 0},
-                    new float[] {0, 0, 0, 0, 1}
-                };
+            // Cria um ajuste de cor para alterar o contraste, brilho e saturação
+            ImageAttributes attributes = new ImageAttributes();
+
+            // Matriz para ajuste de contraste, brilho e saturação
+            float[][] matrix = {
+            new float[] {contrastValue, 0, 0, 0, 0},    // Ajuste de contraste
+            new float[] {0, contrastValue, 0, 0, 0},    // Ajuste de brilho
+            new float[] {0, 0, contrastValue, 0, 0},    // Ajuste de saturação
+            new float[] {0, 0, 0, 1, 0},                // Sem alteração no canal alfa
+            new float[] {0, 0, 0, 0, 1}                 // Sem alteração na translação de cores
+            };
+
                 ColorMatrix colorMatrix = new ColorMatrix(matrix);
                 attributes.SetColorMatrix(colorMatrix);
 
-                // Desenha a imagem com o ajuste de contraste
-                Rectangle rect = new Rectangle(0, 0, image.Width, image.Height);
-                g.DrawImage(image, rect, 0, 0, rect.Width, rect.Height, GraphicsUnit.Pixel, attributes);
+            // Aplica os ajustes na imagem
+            g.DrawImage(image, new Rectangle(0, 0, image.Width, image.Height),
+            0, 0, image.Width, image.Height, GraphicsUnit.Pixel, attributes);
             }
         }
+
     }
 }
+
