@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "qdeFV5ap5Y4yTKtuQLVXd/HErOuNICZhjT2R8OT4H3ljI0gw0qAUgC25VZFqEXH4c56vhQaD3OvhhheVLHW9qA==",
+  "dgSpecHash": "mLBD7LdxS3mGsondY/Dlx6fpyEPPZs01SSLXT1TFXxoNkEKyZ1UR73/3Rhia9tbs6AYVivEWRt3bIU+OfwikXQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Matheus\\Desktop\\win form\\win form.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Matheus\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
+    "C:\\Users\\Matheus\\.nuget\\packages\\qrcoder\\1.5.1\\qrcoder.1.5.1.nupkg.sha512",
+    "C:\\Users\\Matheus\\.nuget\\packages\\system.drawing.common\\6.0.0\\system.drawing.common.6.0.0.nupkg.sha512"
+  ],
   "logs": []
 }
