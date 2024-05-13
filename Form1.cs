@@ -112,13 +112,15 @@ namespace win_form
 
             // Define a largura da área de impressão (sem margens)
             float printWidth = e.PageSettings.PrintableArea.Width;
-            //float printHeight = e.MarginBounds.Height;
+  
 
+            // Define o recuo desejado (espaço no início de cada linha)
+            float indentation = 10; // Altere conforme necessário            
+            
             // Inicializa a posição X e Y para o início do texto (sem margens)
-            float x = 0;
+            float x = indentation;
             float y = 0;
 
-    
 
             // Calcula a altura do texto para ajustá-lo à página
             SizeF textSize = e.Graphics.MeasureString(text, font, (int)printWidth);
@@ -126,28 +128,35 @@ namespace win_form
             // Calcula o número de linhas necessárias para o texto
             int numLines = (int)Math.Ceiling(textSize.Width / printWidth);
 
+            // Divide o texto em palavras
+            string[] words = text.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
             // Divide o texto em linhas
-            string[] lines = text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+            //string[] lines = text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
 
            // Desenha cada linha do texto
-                foreach (string line in lines)
-                {
+                foreach (string word in words)
+                {   
+                    // Calcula o tamanho da palavra
+                    SizeF wordSize = e.Graphics.MeasureString(word + " ", font);
                     // Calcula o tamanho da linha atual
-                    SizeF lineSize = e.Graphics.MeasureString(line, font);
+                    //SizeF lineSize = e.Graphics.MeasureString(line, font);
 
                     // Verifica se a linha atual cabe na largura da página
-                    if (x + lineSize.Width > printWidth)
+                    if (x + wordSize.Width > printWidth - indentation)
                     {
                         // Se não couber, move para a próxima linha
-                        x = 0; // Volta para o início da linha
-                        y += lineSize.Height; // Move para a próxima linha
+                        x = indentation; // Volta para o início da linha
+                       y += wordSize.Height; // Move para a próxima linha
                     }
 
                         // Desenha a linha atual
-                        e.Graphics.DrawString(line, font, Brushes.Black, x, y);
+                        //e.Graphics.DrawString(line, font, Brushes.Black, x, y);
+                        // Desenha a palavra
+                        e.Graphics.DrawString(word + " ", font, Brushes.Black, x, y);
 
                         // Atualiza a posição X para o início da próxima linha
-                        x += lineSize.Width;
+                        x += wordSize.Width;
                 }
             };
 
